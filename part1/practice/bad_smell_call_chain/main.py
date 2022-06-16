@@ -3,43 +3,53 @@
 # а не использовали цепочку вызовов объектов
 
 class Room:
-    def get_name(self):
+    @staticmethod
+    def get_name():
         return 42
 
 
 class Street:
-    def get_room(self) -> Room:
+    @staticmethod
+    def get_room() -> Room:
         return Room()
 
 
 class City:
-    def get_street(self) -> Street:
+    @staticmethod
+    def get_street() -> Street:
         return Street()
 
-    def population(self):
+    @staticmethod
+    def population():
         return 100500
 
 
 class Country:
-    def get_city(self) -> City:
+    @staticmethod
+    def get_city() -> City:
         return City()
 
 
 class Planet:
-    def get_contry(self) -> Country:
+    @staticmethod
+    def get_contry() -> Country:
         return Country()
 
 
 class Person:
-    def __init__(self):
-        self.planet = Planet()
+    def __init__(self, room, population_cities):
+        self.room = room
+        self.population_cities = population_cities
 
     def get_person_room(self):
-        return self.planet.get_contry().get_city().get_street().get_room().get_name()
+        return self.room
 
     def get_city_population(self):
-        return self.planet.get_contry().get_city().population()
+        return self.population_cities
 
 
-# TODO после выполнения задания попробуйте
-# сделать экземпляр класса person и вызвать новые методы.
+if __name__ == '__main__':
+    person = Person(212, 100050)
+
+    print(person.get_person_room())
+    print(person.get_city_population())
